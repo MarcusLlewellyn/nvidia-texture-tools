@@ -33,7 +33,7 @@
 
 // Set to 1 or 2 when building squish to use SSE or SSE2 instructions.
 #ifndef SQUISH_USE_SSE
-#define SQUISH_USE_SSE 2
+#define SQUISH_USE_SSE 0
 #endif
 
 // Internally set SQUISH_USE_SIMD when either Altivec or SSE is available.
