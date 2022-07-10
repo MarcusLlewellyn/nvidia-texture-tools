@@ -1,4 +1,4 @@
-// This code is in the public domain -- Ignacio Castaño <castano@gmail.com>
+// This code is in the public domain -- Ignacio CastaÃ±o <castano@gmail.com>
 
 #include "Debug.h"
 #include "Array.inl"
@@ -665,7 +665,7 @@ namespace
 #  elif NV_CPU_PPC
         ucontext_t * ucp = (ucontext_t *)secret;
         return (void *) ucp->uc_mcontext.regs->nip;
-#    elif NV_CPU_AARCH64
+#    elif NV_CPU_ARM_64
         ucontext_t * ucp = (ucontext_t *)secret;
         return (void *) ucp->uc_mcontext.pc;
 #   elif NV_CPU_E2K /* MCST Elbrus 2000 */

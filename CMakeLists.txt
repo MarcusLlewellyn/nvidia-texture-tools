@@ -4,28 +4,28 @@ ENABLE_TESTING()
 
 SET(NV_CMAKE_DIR "${NV_SOURCE_DIR}/cmake")
 SET(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${NV_CMAKE_DIR}")
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
-# Compiler check (needs -std:c++11 flag)
-include(CheckCXXCompilerFlag)
-CHECK_CXX_COMPILER_FLAG("-std=c++11" COMPILER_SUPPORTS_CXX11)
-if(COMPILER_SUPPORTS_CXX11)
-    set(CMAKE_CXX_STANDARD 11)
-    set(CMAKE_CXX_STANDARD_REQUIRED ON)
-    set(CMAKE_CXX_EXTENSIONS OFF)
-else()
-    message(FATAL_ERROR "The compiler ${CMAKE_CXX_COMPILER} has no C++11 support. Please use a different C++ compiler.")
-endif()
+set (CMAKE_CXX_STANDARD 11)
+
+IF(WIN32)
+	# Set GLUT path:
+	SET(GLUT_ROOT_DIR "${NV_SOURCE_DIR}/extern/glut")
+	# Set FreeImage path:
+	SET(FREEIMAGE_ROOT_DIR "${NV_SOURCE_DIR}/extern/FreeImage")
+ENDIF(WIN32)
 
 INCLUDE(${NV_CMAKE_DIR}/OptimalOptions.cmake)
+MESSAGE(STATUS "Setting optimal options")
+MESSAGE(STATUS "  Processor: ${NV_SYSTEM_PROCESSOR}")
+MESSAGE(STATUS "  Compiler Flags: ${CMAKE_CXX_FLAGS}")
 
 IF(CMAKE_BUILD_TYPE MATCHES "debug")
     SET(CMAKE_DEBUG_POSTFIX "_d" CACHE STRING "Postfix for debug build libraries.")
     ADD_DEFINITIONS(-D_DEBUG=1)
 ENDIF()
 
-
 ADD_SUBDIRECTORY(extern)
-
 ADD_SUBDIRECTORY(src)
 
 # These files should only be installed when creating packages.

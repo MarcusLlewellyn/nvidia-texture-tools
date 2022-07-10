@@ -1,4 +1,4 @@
-// This code is in the public domain -- Ignacio Castano <castano@gmail.com>
+// This code is in the public domain -- Ignacio Castaño <castano@gmail.com>
 
 #pragma once
 #ifndef NV_CORE_H
@@ -74,6 +74,10 @@
 #   define NV_OS_XBOX 1
 #else
 #   error "Unsupported OS"
+#endif
+
+#if defined __ANDROID__
+#   define NV_OS_ANDROID 1
 #endif
 
 
